@@ -3,6 +3,7 @@
 //Open GL includes
 #include <GL/glut.h>
 #include <GL/gl.h>
+//By Claude Concolato - 10-2013
 
 typedef struct {
     int width;
@@ -88,7 +89,6 @@ void init (){
     glShadeModel( GL_SMOOTH );
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LEQUAL );
-    //glClearColor(1.0, 1.0, 1.0, 1.0);                                                                                     // specify white background color                                                              
 }
  
 int main(int argc, char **argv){
