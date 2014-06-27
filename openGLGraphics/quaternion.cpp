@@ -6,7 +6,7 @@
 #define ROT(x, y, costheta, sintheta) x*costheta - y*sintheta, x*sintheta + y*costheta
 GLfloat rotatedegree=0;
 
-
+//Code written by Dr. Jeong
 class CVector{
 public:
 	CVector(){x=y=z=0;};
@@ -124,76 +124,55 @@ void QuaternionRotationMatrix(CQuaternion q, GLfloat * m) {
 CVector downwards = CVector(0, 0, 1);
 CVector ball_position = CVector(0, 0, 0);
 CQuaternion ball_orientation = CQuaternion(0,1, 0, 0);
+//End Dr. Jeong Code
 
+//Begin Claude C Code
 void display() {
   GLfloat rotation[16];
   float d;
   
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
   glLoadIdentity();
   glTranslatef(0, 0, -20);
   
   //creating spheres with quaternion implemented
   glPushMatrix(); 
   glScalef(2,2,2);
-// glRotatef (rotatedegree, 0,1,0);
-   QuaternionRotationMatrix(ball_orientation, rotation);
-   glMultMatrixf(rotation);
-    glColor3f(1, 0, 0);
- // glutSolidDodecahedron();
-glutSolidSphere(2,15,15);   // red sphere
-	 glPopMatrix();
+  QuaternionRotationMatrix(ball_orientation, rotation);
+  glMultMatrixf(rotation);
+  glColor3f(1, 0, 0);
+  glutSolidSphere(2,15,15);   // red sphere
+	glPopMatrix();
 
-	 
-	   glPushMatrix(); 
- glRotatef (rotatedegree, 0,1,0);
+	glPushMatrix(); 
+  glRotatef (rotatedegree, 0,1,0);
   glScalef(.6,.6,.6);
   glTranslatef(7,0,7);
-   //QuaternionRotationMatrix(ball_orientation, rotation);
-   glMultMatrixf(rotation);
-    glColor3f(0, 0, 1);
-   //glutSolidDodecahedron();
-	  glutSolidSphere(1,15,15);		 //blue sphere
-	 glPopMatrix();
 
-	 /*
-	   glPushMatrix(); 
+  glMultMatrixf(rotation);
+  glColor3f(0, 0, 1);
 
-  {
-
-
-	  glRotatef (rotatedegree, 0,1,0);
-	    glTranslatef(4, ball_position.y, 4);
-		glScalef(.4,.4,.4);
-		  QuaternionRotationMatrix(ball_orientation, rotation);
-    glMultMatrixf(rotation);
-    glColor3f(0, 0, 1);
-    glutSolidDodecahedron();
-  } glPopMatrix();
-  */
-  
+	glutSolidSphere(1,15,15);		 //blue sphere
+	glPopMatrix();
   glutSwapBuffers();
 }
 
-
-
-//for continuous rotation
+//For continuous rotation
 void timer(int ignored) {
 	rotatedegree+=5;
+
 	if(rotatedegree>360)    //360 rotation
 		rotatedegree-=360;
-	glutPostRedisplay();
-		glutTimerFunc(40,timer,0);  // (msec , function callback, int value to pass to the timer)
 
+	glutPostRedisplay();
+	glutTimerFunc(40,timer,0);  // (msec , function callback, int value to pass to the timer)
 }
 
 int main(int argc, char ** argv) {
-
   glutInit(&argc, argv);
   glutInitWindowSize(640, 480);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-  glutCreateWindow("Homework 5 Quaternion Rotation");
+  glutCreateWindow("Quaternion Rotation");
   
   ///////////////////////////
   glViewport(0, 0, 640, 480);
@@ -212,10 +191,9 @@ int main(int argc, char ** argv) {
   ///////////////////////////
   
   glutDisplayFunc(display);
-//  glutMouseFunc(button);
- // glutMotionFunc(motion);
- glutTimerFunc (40, timer,0);  
+  glutTimerFunc (40, timer,0);  
   glutMainLoop();
   
   return EXIT_SUCCESS;
 }
+//End Claude C
