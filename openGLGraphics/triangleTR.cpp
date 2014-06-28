@@ -4,7 +4,7 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 //By Claude Concolato - 10-2013
-
+//This is a test
 typedef struct {
     int width;
     int height;
