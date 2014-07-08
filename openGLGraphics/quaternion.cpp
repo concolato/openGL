@@ -6,7 +6,7 @@
 #define ROT(x, y, costheta, sintheta) x*costheta - y*sintheta, x*sintheta + y*costheta
 GLfloat rotatedegree=0;
 
-//Code written by Dr. Jeong
+//Code written by Dr. Jeong - Professor of Computer Science at the University of the District of Columbia (UDC)
 class CVector{
 public:
 	CVector(){x=y=z=0;};
